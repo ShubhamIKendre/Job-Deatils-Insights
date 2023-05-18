@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+                <html>
+                <head>
+                <meta charset="ISO-8859-1">
+                <title>Home Page</title>
+                <title style="align-content: center;">Job Insights</title>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                
+                <style>
+                    table{
+                      margin: auto;
+                      border: 1px solid black;
+                    }
+                    th{
+                        padding: auto;
+                        margin: auto;
+                        background-color: rgb(255, 153, 0);
+                        text-transform: capitalize;
+                    }
+                    .fade-in {
+                        animation-name: fadeIn;
+                        animation-duration: 10s;
+                    }
+
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                        }
+                        to {
+                            opacity: 1;
+                        }
+                    }
+                    .shake {
+                    animation: shake 2s ease infinite;
+                    }
+                    @keyframes shake {
+                        0%, 100% {transform: translateX(0);}
+                        10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+                        20%, 40%, 60%, 80% {transform: translateX(10px);}
+                            }
+
+                    .bounce-in-right {
+                    animation: bounce-in-right 2s ease ;
+                    }
+                    @keyframes bounce-in-right {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(2000px);
+                    }
+                    60% {
+                        opacity: 1;
+                        transform: translateX(-30px);
+                    }
+                    80% { transform: translateX(10px); }
+                    100% { transform: translateX(0); }
+                    }
+
+                    .bounce-out {
+                    animation: bounce-out 2s ease infinite;
+                    }
+                    @keyframes bounce-out {
+                    0% { transform: scale(1); }
+                    25% { transform: scale(.95); }
+                    50% {
+                        opacity: 1;
+                        transform: scale(1.1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(.3);
+                    } 
+                    }
+                      /* Style buttons */
+                  .btn {
+                    background-color: DodgerBlue; /* Blue background */
+                    border: none; /* Remove borders */
+                    color: white; /* White text */
+                    padding: 12px 16px; /* Some padding */
+                    font-size: 16px; /* Set a font size */
+                    cursor: pointer; /* Mouse pointer on hover */
+                  }
+
+                </style>
+            </head>
+            <body>
+                <header style="position: sticky; top: 0; z-index: 999;">
+                    <nav class="navbar navbar-expand-md navbar-dark" style=" background-color: rgb(146, 47, 30); height: 120px;">
+                        {% load static %}
+                        <div><img src="{% static 'Logo/logo.png' %}", width="100" height="100" style="border:2px solid seashell;"></div>
+                        <div class="shake">
+                            <h1 class="navbar-brand"> Job Insights </h1>
+                        </div>
+                    </nav>
+                 </header>    
+<div style="padding: 15px; float:left;">
+    <h5 style="font-family: 'Times New Roman', Times, serif;">Hello {{name}} !!!</h5>
+    <h5 style=" font-family: 'Times New Roman', Times, serif;">Job profile: {{job}}</h5>
+    <!-- <a href="demo.txt" download="demo.txt">Download File</a> -->
+  </div>
+  <div style="float: right; margin-top: 10px; margin-right: 10px;padding: 5px;">
+    <a href="/download"><button class="btn"><i class="fa fa-download"></i> Download</button></a>
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i
+        class="fa fa-envelope"></i> Send Mail</button>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Send Job Oppurtunities to friend</h4>
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/sendmail" ,method="GET">
+            <label for="mail">Email address: </label>
+            <input type="email" name="mail" id="mail">
+            <br>
+            <button class="btn" type="submit">Send</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+                <table border="1" class="dataframe table table-stripped">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>company_name</th>
+      <th>location</th>
+      <th>via</th>
+      <th>related_links</th>
+      <th>detected_extensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Web Developer</td>
+      <td>FTM</td>
+      <td>India</td>
+      <td>via LinkedIn</td>
+      <td>[<a href="http://www.francotosimeccanica.it/">francotosimeccanica.it</a>, <a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=FTM&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCLgJ">See web results for FTM</a>]</td>
+      <td>{'posted_at': '11 hours ago', 'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Web Developer Intern (Remote)</td>
+      <td>MonetizeMore</td>
+      <td>Anywhere</td>
+      <td>via LinkedIn</td>
+      <td>[<a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=MonetizeMore&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCOUJ">See web results for MonetizeMore</a>]</td>
+      <td>{'posted_at': '17 hours ago', 'schedule_type': 'Internship', 'work_from_home': True}</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Senior Web Developer</td>
+      <td>CYBERARK SOFTWARE</td>
+      <td>Hyderabad, Telangana, India</td>
+      <td>via Careers @ CyberArk</td>
+      <td>[<a href="http://www.cyberark.com/">cyberark.com</a>, <a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=CYBERARK+SOFTWARE&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCJUK">See web results for CYBERARK SOFTWARE</a>]</td>
+      <td>{'posted_at': '6 days ago', 'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Web Developer</td>
+      <td>Crestfin LLC</td>
+      <td>Hyderabad, Telangana, India</td>
+      <td>via LinkedIn</td>
+      <td>[<a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Crestfin+LLC&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCMIK">See web results for Crestfin LLC</a>]</td>
+      <td>{'posted_at': '15 hours ago', 'schedule_type': 'Contractor'}</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Web Developer</td>
+      <td>Essel</td>
+      <td>Anywhere</td>
+      <td>via Jobs By Workable</td>
+      <td>[<a href="http://www.essilor.com/">essilor.com</a>, <a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Essel&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCPEK">See web results for Essel</a>]</td>
+      <td>{'schedule_type': 'Full-time', 'work_from_home': True}</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sr. Web Developer</td>
+      <td>Uplers</td>
+      <td>Hyderabad, Telangana, India</td>
+      <td>via LinkedIn</td>
+      <td>[<a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Uplers&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCJ4L">See web results for Uplers</a>]</td>
+      <td>{'posted_at': '1 day ago', 'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Web Designers</td>
+      <td>Crazy Web Designers</td>
+      <td>Indore, Madhya Pradesh, India</td>
+      <td>via SmartRecruiters Job Search</td>
+      <td>[<a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Crazy+Web+Designers&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCMkL">See web results for Crazy Web Designers</a>]</td>
+      <td>{'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Senior Web Developer</td>
+      <td>Xcelo Group Inc</td>
+      <td>Hyderabad, Telangana, India</td>
+      <td>via LinkedIn</td>
+      <td>[<a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Xcelo+Group+Inc&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCPQL">See web results for Xcelo Group Inc</a>]</td>
+      <td>{'posted_at': '21 hours ago', 'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Web Developer</td>
+      <td>Cendyn</td>
+      <td>Hyderabad, Telangana, India</td>
+      <td>via JobScore</td>
+      <td>[<a href="http://www.cendyn.com/">cendyn.com</a>, <a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Cendyn&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCKMM">See web results for Cendyn</a>]</td>
+      <td>{'posted_at': '21 days ago', 'schedule_type': 'Full-time'}</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Web Developer</td>
+      <td>Genworth</td>
+      <td>Anywhere</td>
+      <td>via Jobgether</td>
+      <td>[<a href="http://www.genworth.com/">genworth.com</a>, <a href="https://www.google.com/search?hl=en&amp;gl=us&amp;q=Genworth&amp;sa=X&amp;ved=0ahUKEwjZz-n4vv7-AhXIlmoFHfRUA1oQmJACCNMM">See web results for Genworth</a>]</td>
+      <td>{'schedule_type': 'Full-time', 'work_from_home': True}</td>
+    </tr>
+  </tbody>
+</table></body>
+</html>
