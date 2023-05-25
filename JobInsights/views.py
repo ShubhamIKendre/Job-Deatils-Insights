@@ -15,10 +15,11 @@ def index(request):
     return render(request,"index.html")
 
 def sendmail(request):
-    receiver = request.GET.get("mail")
+    sender = request.GET.get("sendermail")
+    receiver = request.GET.get("receivermail")
     with open("templates/table.html") as file:
         html_content = file.read()
-    SendMail.sendmail(html_content,receiver)
+    SendMail.sendmail(html_content,sender,receiver)
     print("Mail Sent")
 
     return render(request,"result.html")
@@ -33,8 +34,8 @@ def fetch(request):
     data.to_csv("templates\Data\Job_data.csv")
     print(data.columns)
     if "thumbnail" in data.columns:
-        result = data.drop(["thumbnail"],axis=1)
-    result = result.drop(["job_highlights","job_id","description","extensions"],axis=1)
+        data = data.drop(["thumbnail"],axis=1)
+    result = data.drop(["job_highlights","job_id","description","extensions"],axis=1)
 
     links_list = result['related_links']
 
@@ -125,6 +126,16 @@ def fetch(request):
                     cursor: pointer; /* Mouse pointer on hover */
                   }
 
+                  input[type=email], select {
+                    width: 80%;
+                    padding: 10px 15px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                  }
+
                 </style>
             </head>
             <body>
@@ -163,8 +174,11 @@ def fetch(request):
         </div>
         <div class="modal-body">
           <form action="/sendmail" ,method="GET">
-            <label for="mail">Email address: </label>
-            <input type="email" name="mail" id="mail">
+            <label for="sendermail"> Sender Email: </label>
+            <input type="email" name="sendermail" id="sendermail">
+            <br>
+            <label for="receivermail">Receiver Email: </label>
+            <input type="email" name="receivermail" id="receivermail">
             <br>
             <button class="btn" type="submit">Send</button>
           </form>

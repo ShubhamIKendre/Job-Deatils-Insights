@@ -5,8 +5,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-def sendmail(html_content,Receiver):
-    Sender = "sikendre@mitaoe.ac"
+def sendmail(html_content,Sender,Receiver):
+    # Sender = "sikendre@mitaoe.ac"
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Available Job opportunities from JobInsights"
